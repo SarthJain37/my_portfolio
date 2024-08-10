@@ -7,6 +7,7 @@ const cors = require('cors');
 const app = express();
 app.use(bodyParser.json());
 app.use(cors());
+app.use(express.json());
 
 app.post('/api/contact', async (req, res) => {
   const { name, email, message } = req.body;

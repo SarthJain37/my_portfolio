@@ -32,19 +32,28 @@ function Home() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setStatus('Sending...');
+
         try {
-            await fetch(API_URL, {
+            const response = await fetch('/api/contact', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(formData),
+                body: JSON.stringify({ name, email, message }),
             });
-            alert('Message sent successfully!');
-            setFormData({ name: '', email: '', message: '' });
+
+            if (response.ok) {
+                setStatus('SUCCESS');
+                setName('');
+                setEmail('');
+                setMessage('');
+            } else {
+                setStatus('ERROR');
+            }
         } catch (error) {
-            console.error('Error sending message:', error);
-            alert('Failed to send message. Please try again.');
+            console.error('Error:', error);
+            setStatus('ERROR');
         }
     };
 

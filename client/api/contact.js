@@ -19,7 +19,7 @@ export default async function handler(req, res) {
       // Send email
       await transporter.sendMail({
         from: process.env.EMAIL_USER,
-        to: process.env.EMAIL_USER,
+        to: process.env.ADMIN_EMAIL, // The email where you want to receive messages
         subject: `New message from ${name}`,
         text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`,
       });
