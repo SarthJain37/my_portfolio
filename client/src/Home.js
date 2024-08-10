@@ -28,7 +28,6 @@ function Home() {
         setFormData({ ...formData, [name]: value });
     };
 
-    // In ContactForm.js or Home.js
     const API_URL = 'https://sarthakboralkarportfolio.vercel.app/api/contact';
 
     const handleSubmit = async (e) => {
