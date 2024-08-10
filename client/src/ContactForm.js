@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+//import axios from 'axios';
 
 function ContactForm() {
   const [formData, setFormData] = useState({
@@ -7,21 +7,22 @@ function ContactForm() {
     email: '',
     message: '',
   });
-  const [status, setStatus] = useState('');
-
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setStatus('Sending...');
     try {
-      const response = await axios.post('http://localhost:5000/api/contact', formData);
-      setStatus('Message sent successfully!');
-      setFormData({ name: '', email: '', message: '' });
+      // If you're not using the response, you can omit the variable
+      await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+      // Handle success (e.g., show a success message)
     } catch (error) {
-      setStatus('Failed to send message. Please try again.');
+      console.error('Error:', error);
+      // Handle error (e.g., show an error message)
     }
   };
 

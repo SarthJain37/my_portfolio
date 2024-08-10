@@ -31,15 +31,20 @@ function Home() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('/api/contact', formData);
-            await axios.post('http://localhost:3001/api/contact', formData);
-            alert('Message sent successfully!');
-            setFormData({ name: '', email: '', message: '' });
+          // If you're not using the response, you can omit the variable
+          await fetch('/api/contact', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData),
+          });
+          // Handle success (e.g., show a success message)
         } catch (error) {
-            console.error('Error sending message:', error);
-            alert('Failed to send message. Please try again.');
+          console.error('Error:', error);
+          // Handle error (e.g., show an error message)
         }
-    };
+      };
 
     return (
         <div>

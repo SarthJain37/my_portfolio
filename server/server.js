@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
@@ -11,9 +12,9 @@ app.post('/api/contact', async (req, res) => {
   const { name, email, message } = req.body;
 
   let transporter = nodemailer.createTransport({
-    host: process.env.EMAIL_HOST,
-    port: process.env.EMAIL_PORT,
-    secure: process.env.EMAIL_SECURE === 'true',
+    host: "smtp.gmail.com",
+    port: 587,
+    secure: false,
     auth: {
       user: process.env.EMAIL_USER,
       pass: process.env.EMAIL_PASS
@@ -23,7 +24,7 @@ app.post('/api/contact', async (req, res) => {
   try {
     await transporter.sendMail({
       from: `"Your Website" <${process.env.EMAIL_USER}>`,
-      to: process.env.ADMIN_EMAIL,
+      to: process.env.EMAIL_USER,
       subject: "New Contact Form Submission",
       text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`,
       html: `<p><strong>Name:</strong> ${name}</p>
@@ -38,13 +39,7 @@ app.post('/api/contact', async (req, res) => {
   }
 });
 
-// For local development
-if (process.env.NODE_ENV !== 'production') {
-  const PORT = process.env.PORT || 3001;
-  app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-  });
-}
-
-// For Vercel
-module.exports = app;
+const PORT = process.env.PORT || 3001;
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
