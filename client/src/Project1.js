@@ -89,7 +89,7 @@ function Project1() {
                 <div className="main-container">
                     <div className="project-details__content">
                         <div className="project-details__showcase-img-cont">
-                            <img src="/images/url_shortener.png" alt="Project Image" className="project-details__showcase-img" />
+                        <img src="/images/url_shortener.png" alt="URL Shortener project screenshot" className="project-details__showcase-img" />
                         </div>
                         <div className="project-details__content-main">
                             <div className="project-details__desc">

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+//import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 function Home() {
@@ -31,20 +31,20 @@ function Home() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-          // If you're not using the response, you can omit the variable
-          await fetch('/api/contact', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(formData),
-          });
-          // Handle success (e.g., show a success message)
+            await fetch('http://localhost:3001/api/contact', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            });
+            alert('Message sent successfully!');
+            setFormData({ name: '', email: '', message: '' });
         } catch (error) {
-          console.error('Error:', error);
-          // Handle error (e.g., show an error message)
+            console.error('Error sending message:', error);
+            alert('Failed to send message. Please try again.');
         }
-      };
+    };
 
     return (
         <div>
@@ -324,7 +324,7 @@ projects__row-content-title">URL Shortener</h3>
 
                     <div className="main-footer__lower">
                         &copy; Copyright 2024. Made by
-                        <a rel="noreferrer" target="_blank" href="#">Sarthak Boralkar</a>
+                        <a href="/" rel="noreferrer">Sarthak Boralkar</a>
                     </div>
                 </div>
             </footer>
