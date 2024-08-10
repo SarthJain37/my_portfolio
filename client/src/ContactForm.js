@@ -8,11 +8,14 @@ function ContactForm() {
     message: '',
   });
 
+  // In ContactForm.js or Home.js
+  const API_URL = 'https://sarthakboralkarportfolio.vercel.app/api/contact';
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       // If you're not using the response, you can omit the variable
-      await fetch('/api/contact', {
+      await fetch(API_URL, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

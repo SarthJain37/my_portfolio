@@ -28,10 +28,13 @@ function Home() {
         setFormData({ ...formData, [name]: value });
     };
 
+    // In ContactForm.js or Home.js
+    const API_URL = 'https://sarthakboralkarportfolio.vercel.app/api/contact';
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await fetch('http://localhost:3001/api/contact', {
+            await fetch(API_URL, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
