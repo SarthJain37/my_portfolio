@@ -170,7 +170,7 @@ function Project1() {
 
                     <div className="main-footer__lower">
                         &copy; Copyright 2024. Made by
-                        <a rel="noreferrer" target="_blank" href="#">Sarthak Boralkar</a>
+                        <a rel="noreferrer" target="_blank" href="https://your-portfolio-url.com">Sarthak Boralkar</a>
                     </div>
                 </div>
             </footer>
