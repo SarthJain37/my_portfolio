@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-//import axios from 'axios';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 function Home() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-
+    const [status, setStatus] = useState("")
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
     };
@@ -35,19 +35,23 @@ function Home() {
         setStatus('Sending...');
 
         try {
+            console.log(formData)
             const response = await fetch('/api/contact', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ name, email, message }),
+                body: JSON.stringify({
+                    name: formData.name,
+                    email: formData.email,
+                    message: formData.message
+                }),
             });
+            console.log(response)
 
             if (response.ok) {
                 setStatus('SUCCESS');
-                setName('');
-                setEmail('');
-                setMessage('');
+                setFormData({...formData, name:"", email:"", message:""})
             } else {
                 setStatus('ERROR');
             }

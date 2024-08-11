@@ -15,7 +15,7 @@ function ContactForm() {
     e.preventDefault();
     try {
       // If you're not using the response, you can omit the variable
-      await fetch(API_URL, {
+      await fetch('/api/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
